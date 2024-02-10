@@ -1,5 +1,7 @@
 package org.jp441.mymediatracker;
 
+import java.util.ArrayList;
+
 public class Game extends Media{
     private String console;
     private String developer;
@@ -7,7 +9,7 @@ public class Game extends Media{
     public Game(){}
 
     public Game(
-            String name, String genre, String status,
+            String name, ArrayList<String> genre, String status,
             String console, String developer, double rating
     ){
         this.name = name;

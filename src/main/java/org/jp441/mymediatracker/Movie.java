@@ -1,43 +1,53 @@
 package org.jp441.mymediatracker;
 
+import java.util.ArrayList;
+
 public class Movie extends Media{
-    protected String director;
-    protected String studio;
+    protected ArrayList<String> director;
+    protected ArrayList<String> writer;
+    protected String country;
+    protected String plot;
+    protected String year; //year is a String because of OMDb formatting
+
 
     public Movie(){}
 
     public Movie(
-            String name, String genre, String status,
-            String director, String studio, double rating
+            String name, ArrayList<String> genre, String status,
+            ArrayList<String> director, ArrayList<String> writer, String country, String plot,
+            String year, double rating
     ) {
         this.name = name;
         this.type = "Movie";
         this.genre = genre;
         this.status = status;
         this.director = director;
-        this.studio = studio;
+        this.writer = writer;
+        this.country = country;
+        this.plot = plot;
+        this.year = year;
         this.rating = rating;
     }
 
-    public String getDirector(){
+    public ArrayList<String> getDirector(){
         return director;
     }
 
-    public String getStudio(){
-        return studio;
+    public String getYear(){
+        return year;
     }
 
-    public void setDirector(String director){
+    public void setDirector(ArrayList<String> director){
         this.director = director;
     }
 
-    public void setStudio(String studio){
-        this.studio = studio;
+    public void setYear(String year){
+        this.year = year;
     }
 
     @Override
     public String toString(){
         return super.toString() + "\nDirector: " + director +
-                "\nStudio: " + studio;
+                "\nStudio: " + year;
     }
 }

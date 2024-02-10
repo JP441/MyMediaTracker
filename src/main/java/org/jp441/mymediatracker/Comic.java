@@ -1,12 +1,14 @@
 package org.jp441.mymediatracker;
 
+import java.util.ArrayList;
+
 public class Comic extends Book{
     private int issueNo;
 
     public Comic(){}
 
     public Comic(
-            String name, String genre, String status,
+            String name, ArrayList<String> genre, String status,
             String author, String publisher, int issueNo, double rating){
         super(name, genre, status, author, publisher, rating);
         this.issueNo = issueNo;

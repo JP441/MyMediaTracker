@@ -1,5 +1,7 @@
 package org.jp441.mymediatracker;
 
+import java.util.ArrayList;
+
 public class Book extends Media{
     protected String author;
     protected String publisher;
@@ -7,7 +9,7 @@ public class Book extends Media{
     public Book(){}
 
     public Book(
-            String name, String genre,
+            String name, ArrayList<String> genre,
             String status, String author, String publisher,
             double rating
     ){

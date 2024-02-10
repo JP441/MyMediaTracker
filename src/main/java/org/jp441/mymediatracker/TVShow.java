@@ -1,14 +1,18 @@
 package org.jp441.mymediatracker;
 
+import java.util.ArrayList;
+
 public class TVShow extends Movie{
     private int season;
     public TVShow(){}
 
     public TVShow(
-            String name, String genre, String status,
-            String director, String studio, int season, double rating
+            String name, ArrayList<String> genre, String status,
+            ArrayList<String> director, ArrayList<String> writer,
+            String country, String plot, String year,
+            int season, double rating
            ){
-        super(name, genre, status, director, studio, rating);
+        super(name, genre, status, director, writer, country, plot, year, rating);
         this.type = "TV Show";
         this.season = season;
     }

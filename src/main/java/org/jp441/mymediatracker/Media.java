@@ -1,9 +1,11 @@
 package org.jp441.mymediatracker;
 
+import java.util.ArrayList;
+
 public abstract class Media {
     protected String name;
     protected String type;
-    protected String genre;
+    protected ArrayList<String> genre;
     //status (Complete, Playing/Watching/Reading, Stopped)
     protected String status;
     protected double rating;
@@ -17,7 +19,7 @@ public abstract class Media {
         return type;
     }
 
-    public String getGenre(){
+    public ArrayList<String> getGenre(){
         return genre;
     }
 
@@ -35,7 +37,7 @@ public abstract class Media {
         this.type = type;
     }
 
-    public void setGenre(String genre){
+    public void setGenre(ArrayList<String> genre){
         this.genre = genre;
     }
 

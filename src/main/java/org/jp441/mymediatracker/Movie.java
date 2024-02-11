@@ -13,14 +13,13 @@ public class Movie extends Media{
     public Movie(){}
 
     public Movie(
-            String name, ArrayList<String> genre, String status,
+            String name, ArrayList<String> genre,
             ArrayList<String> director, ArrayList<String> writer, String country, String plot,
             String year, double rating
     ) {
         this.name = name;
         this.type = "Movie";
         this.genre = genre;
-        this.status = status;
         this.director = director;
         this.writer = writer;
         this.country = country;

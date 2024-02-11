@@ -9,7 +9,7 @@ public abstract class Media {
     //status (Complete, Playing/Watching/Reading, Stopped)
     protected String status;
     protected double rating;
-    protected byte[] image;
+    protected String image;
 
     public String getName(){
         return name;

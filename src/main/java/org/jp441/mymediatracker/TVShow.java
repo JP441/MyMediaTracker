@@ -7,12 +7,12 @@ public class TVShow extends Movie{
     public TVShow(){}
 
     public TVShow(
-            String name, ArrayList<String> genre, String status,
+            String name, ArrayList<String> genre,
             ArrayList<String> director, ArrayList<String> writer,
             String country, String plot, String year,
             int season, double rating
            ){
-        super(name, genre, status, director, writer, country, plot, year, rating);
+        super(name, genre, director, writer, country, plot, year, rating);
         this.type = "TV Show";
         this.season = season;
     }

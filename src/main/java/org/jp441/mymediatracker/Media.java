@@ -6,9 +6,8 @@ public abstract class Media {
     protected String name;
     protected String type;
     protected ArrayList<String> genre;
-    //status (Complete, Playing/Watching/Reading, Stopped)
-    protected String status;
-    protected double rating;
+
+    protected double imdbRating;
     protected String image;
 
     public String getName(){
@@ -23,10 +22,9 @@ public abstract class Media {
         return genre;
     }
 
-    public String getStatus(){ return status; }
 
-    public double getRating(){
-        return rating;
+    public double getImdbRating(){
+        return imdbRating;
     }
 
     public void setName(String name){
@@ -41,9 +39,8 @@ public abstract class Media {
         this.genre = genre;
     }
 
-    public void setStatus(String status) { this.status = status; }
-    public void setRating(double rating){
-        this.rating = rating;
+    public void setImdbRating(double imdbRating){
+        this.imdbRating = imdbRating;
     }
 
     @Override
@@ -51,7 +48,7 @@ public abstract class Media {
         return "Name: " + name +
                 "\nType: " + type +
                 "\nGenre: " + genre +
-                "\nRating: " + rating;
+                "\nRating: " + imdbRating;
     }
 
 }

@@ -10,16 +10,15 @@ public class Book extends Media{
 
     public Book(
             String name, ArrayList<String> genre,
-            String status, String author, String publisher,
+            String author, String publisher,
             double rating
     ){
         this.name = name;
         this.type = "Book";
         this.genre = genre;
-        this. status = status;
         this.author = author;
         this.publisher = publisher;
-        this.rating = rating;
+        this.imdbRating = rating;
     }
 
     public String getAuthor(){

@@ -41,7 +41,7 @@ public class MongoDB {
                 .append("country", country)
                 .append("Plot", plot)
                 .append("year", year)
-                .append("rating", rating);
+                .append("imdbRating", rating);
         getMovieCollection().insertOne(newMovie);
     }
 

@@ -25,7 +25,7 @@ public class Movie extends Media{
         this.country = country;
         this.plot = plot;
         this.year = year;
-        this.rating = rating;
+        this.imdbRating = rating;
     }
 
     public ArrayList<String> getDirector(){

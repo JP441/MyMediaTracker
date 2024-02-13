@@ -31,17 +31,17 @@ public class MongoDB {
 
     public void addMovie(
             String name, ArrayList<String> genre, ArrayList<String>director,
-            ArrayList<String> writer, String country, String plot, String year,
-            double rating
+            ArrayList<String> writer, String plot, String year,
+            double rating, String imdbID
     ){
         Document newMovie = new Document("name", name)
                 .append("genre", genre)
                 .append("director", director)
                 .append("writer", writer)
-                .append("country", country)
                 .append("Plot", plot)
                 .append("year", year)
-                .append("imdbRating", rating);
+                .append("imdbRating", rating)
+                .append("imdbID", imdbID);
         getMovieCollection().insertOne(newMovie);
     }
 

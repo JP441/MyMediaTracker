@@ -9,7 +9,7 @@ public class Comic extends Book{
 
     public Comic(
             String name, ArrayList<String> genre,
-            String author, String publisher, int issueNo, double rating){
+            String author, String publisher, int issueNo, String rating){
         super(name, genre, author, publisher, rating);
         this.issueNo = issueNo;
     }

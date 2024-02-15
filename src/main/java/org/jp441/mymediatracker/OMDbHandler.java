@@ -5,45 +5,74 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.json.JSONObject;
-import io.github.cdimascio.dotenv.Dotenv;
+import org.json.JSONArray;
 public class OMDbHandler {
-    private HttpClient client;
+    private HttpClient client = HttpClient.newHttpClient();
     private HttpRequest request;
     private HttpResponse<String> response;
     private String responseBody;
     private JSONObject json;
-    private Dotenv dotenv;
+    private JSONArray jsonArray;
 
     public OMDbHandler(){
     }
-
 
     //adds a + sign between the spaces so that the api can search the name correctly.
     public String formatNameQuery(String name){
         return name.replaceAll("\\s", "+");
     }
 
-    public JSONObject searchMovieByYear(String name, String year){
+    public JSONArray searchMovieAndTVByName(String name, String type){
         String formattedName = formatNameQuery(name);
         try {
-            client = HttpClient.newHttpClient();
+            if(type.equalsIgnoreCase("movie")){
+                request = HttpRequest.newBuilder()
+                        .uri(URI.create(
+                                "http://www.omdbapi.com/?apikey=" + System.getenv("OMDB_AUTH_KEY")
+                                    + "&s=" + formattedName + "&type=movie"
+                        ))
+                        .build();
+            } else {
+                request = HttpRequest.newBuilder()
+                        .uri(URI.create(
+                                "http://www.omdbapi.com/?apikey=" + System.getenv("OMDB_AUTH_KEY")
+                                        + "&s=" + formattedName + "&type=series"
+                        ))
+                        .build();
+            }
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            responseBody = response.body();
+            json = new JSONObject(responseBody);
+            if(json.has("Search")){
+                jsonArray = json.getJSONArray("Search");
+            } else {
+                System.out.println("Could not find movie or tv show");
+                return null;
+            }
+            return jsonArray;
+        } catch(IOException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+        }
+
+    public JSONObject searchByID(String id){
+        try {
             request = HttpRequest.newBuilder()
                     .uri(URI.create(
-                            "http://www.omdbapi.com/?apikey=" + System.getenv("OMDB_AUTH_KEY") + "&t="
-                                    + formattedName + "&y=" + year + "&type=movie"
+                            "http://www.omdbapi.com/?apikey=" + System.getenv("OMDB_AUTH_KEY")
+                                    + "&i=" + id
                     ))
                     .build();
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             responseBody = response.body();
             json = new JSONObject(responseBody);
-            System.out.println(json.get("Title"));
             return json;
-        } catch (IOException | InterruptedException e){
+        } catch(IOException | InterruptedException e){
             e.printStackTrace();
             return null;
         }
-
-
     }
+
 
 }

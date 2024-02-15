@@ -28,22 +28,72 @@ public class MongoDB {
     public MongoCollection<Document> getMovieCollection(){
         return mongoDatabase.getCollection("movies");
     }
+    public MongoCollection<Document> getTVShowCollection(){return mongoDatabase.getCollection("tvshows");}
+    public MongoCollection<Document> getUserCollection() {return mongoDatabase.getCollection("users");}
 
-    public void addMovie(
+
+    public void addUser(String userName){
+        ArrayList<Document> movies = new ArrayList<>();
+        ArrayList<Document> tvShows = new ArrayList<>();
+        ArrayList<Document> games = new ArrayList<>();
+        ArrayList<Document> books = new ArrayList<>();
+        ArrayList<Document> comics = new ArrayList<>();
+        Document newUser = new Document("userName", userName)
+                .append("itemsAdded", 0)
+                .append("movies", movies)
+                .append("tvShows", tvShows)
+                .append("games", games)
+                .append("books", books)
+                .append("comics", comics);
+        getUserCollection().insertOne(newUser);
+    }
+
+    public Document addMovie(
             String name, ArrayList<String> genre, ArrayList<String>director,
-            ArrayList<String> writer, String plot, String year,
-            double rating, String imdbID
+            ArrayList<String> writer, String plot, String releaseYear,
+            String image, String imdbRating, String userRating,
+            String status, String dateConsumed, String imdbID
     ){
         Document newMovie = new Document("name", name)
                 .append("genre", genre)
                 .append("director", director)
                 .append("writer", writer)
-                .append("Plot", plot)
-                .append("year", year)
-                .append("imdbRating", rating)
+                .append("plot", plot)
+                .append("releaseYear", releaseYear)
+                .append("image", image)
+                .append("imdbRating", imdbRating)
+                .append("userRating", userRating)
+                .append("dateConsumed", dateConsumed)
+                .append("status", status)
                 .append("imdbID", imdbID);
-        getMovieCollection().insertOne(newMovie);
+        return newMovie;
     }
+
+    public Document addTVShow(
+            String name, ArrayList<String> genre, ArrayList<String>director,
+            ArrayList<String> writer, String plot, String releaseYear,
+            String image, String season, String seasonWatched,
+            String imdbRating, String userRating, String status,
+            String dateConsumed, String imdbID
+    ){
+            Document newTVShow = new Document("name", name)
+                    .append("genre", genre)
+                    .append("director", director)
+                    .append("writer", writer)
+                    .append("plot", plot)
+                    .append("releaseYear", releaseYear)
+                    .append("image", image)
+                    .append("season", season)
+                    .append("seasonWatched", seasonWatched)
+                    .append("imdbRating", imdbRating)
+                    .append("userRating", userRating)
+                    .append("dateConsumed", dateConsumed)
+                    .append("status", status)
+                    .append("imdbID", imdbID);
+            return newTVShow;
+    }
+
+
 
 //    public static void main(String[] args) {
 //        try {

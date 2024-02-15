@@ -10,14 +10,14 @@ public class Game extends Media{
 
     public Game(
             String name, ArrayList<String> genre,
-            String console, String developer, double rating
+            String console, String developer, String rating
     ){
         this.name = name;
         this.type = "Game";
         this.genre = genre;
         this.console = console;
         this.developer = developer;
-        this.imdbRating = rating;
+        this.userRating = rating;
     }
 
     public String getConsole(){

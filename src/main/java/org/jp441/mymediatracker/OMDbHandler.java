@@ -18,12 +18,10 @@ public class OMDbHandler {
     }
 
     //adds a + sign between the spaces so that the api can search the name correctly.
-    public String formatNameQuery(String name){
-        return name.replaceAll("\\s", "+");
-    }
+
 
     public JSONArray searchMovieAndTVByName(String name, String type){
-        String formattedName = formatNameQuery(name);
+        String formattedName = APIFormatter.formatNameQuery(name);
         try {
             if(type.equalsIgnoreCase("movie")){
                 request = HttpRequest.newBuilder()

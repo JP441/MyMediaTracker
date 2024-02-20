@@ -10,13 +10,33 @@ import java.util.Scanner;
 
 public class MainTest {
     public static void main(String[] args) {
-        MongoDB mongoDB = MongoDB.getMongoDB();
+//        MongoDB mongoDB = MongoDB.getMongoDB();
+//        OMDbHandler omdb = new OMDbHandler();
+//
+//        JSONObject json = omdb.searchByID("tt1194172");
+//        String[] genreArray = json.getString("Genre").split(",\\s");
+//        String[] directorArray = json.getString("Director").split(",\\s");
+//        String[] writerArray = json.getString("Writer").split(",\\s");
+//        ArrayList<String> genreList = new ArrayList<>(Arrays.asList(genreArray));
+//        ArrayList<String> directorList = new ArrayList<>(Arrays.asList(directorArray));
+//        ArrayList<String> writerList = new ArrayList<>(Arrays.asList(writerArray));
+//        String name = json.getString("Title");
+//        String plot = json.getString("Plot");
+//        String year = json.getString("Year");
+//        String image = json.getString("Poster");
+//        String imdbRating = json.getString("imdbRating");
+//        String imdbID = json.getString("imdbID");
+//        Document movie = mongoDB.addMovie(
+//                name, genreList, directorList, writerList, plot, year, image,
+//                imdbRating, "10", "Completed",
+//                "2007-12", imdbID
+//                );
+//        mongoDB.appendDocument("lucas21", movie, "movies");
+//        System.out.println(mongoDB.getUserCollection().find());
 //        mongoDB.addUser("lucas21");
-        MongoIterable<Document> users = mongoDB.getUserCollection().find();
-        for(Document user: users){
-            System.out.println(user);
-        }
-        System.out.println(mongoDB.getUserCollection().find());
+//        for(Document user: users){
+//            System.out.println(user);
+//        }
 //        OMDbHandler omdb = new OMDbHandler();
 //        System.out.println("Please enter what you would like to search for (Movie/Tv show");
 //        Scanner input = new Scanner(System.in);

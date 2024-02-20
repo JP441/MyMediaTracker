@@ -5,8 +5,7 @@ module org.jp441.mymediatracker {
     requires org.mongodb.bson;
     requires java.net.http;
     requires org.json;
-    requires io.github.cdimascio.dotenv.java;
-
+    requires org.mongodb.driver.core;
 
     opens org.jp441.mymediatracker to javafx.fxml;
     exports org.jp441.mymediatracker;

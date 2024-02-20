@@ -1,9 +1,14 @@
 package org.jp441.mymediatracker;
-import com.mongodb.client.*;
+import com.mongodb.client.MongoIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import org.bson.Document;
-
+import org.bson.conversions.Bson;
 import java.util.ArrayList;
-
 
 public class MongoDB {
 
@@ -32,7 +37,21 @@ public class MongoDB {
     public MongoCollection<Document> getUserCollection() {return mongoDatabase.getCollection("users");}
 
 
+    public void setDatabase(String dataBase){
+        mongoDatabase = mongoClient.getDatabase(dataBase);
+    }
+    public boolean checkIfUserNameIsTaken(String userName){
+        userName = userName.strip();
+        Document userToFind = new Document("userName", userName);
+        MongoIterable<Document> iterDoc = getUserCollection().find(userToFind);
+            if(iterDoc.iterator().hasNext()){
+                return true;
+            }
+        return false;
+    }
+
     public void addUser(String userName){
+        userName = userName.strip();
         ArrayList<Document> movies = new ArrayList<>();
         ArrayList<Document> tvShows = new ArrayList<>();
         ArrayList<Document> games = new ArrayList<>();
@@ -48,7 +67,26 @@ public class MongoDB {
         getUserCollection().insertOne(newUser);
     }
 
-    public Document addMovie(
+    public Document findUser(String userName){
+        userName = userName.strip();
+        Document user = new Document("userName", userName);
+        MongoIterable<Document> iterDoc = getUserCollection().find(user);
+        if(iterDoc.iterator().hasNext()){
+            for(Document u: iterDoc){
+                return u;
+            }
+        }
+        return null;
+    }
+
+
+    public void appendDocument(String userName, Document newDocument, String docType){
+        Bson filter = Filters.eq("userName", userName);
+        Bson update = Updates.push(docType, newDocument);
+        Document result = getUserCollection().findOneAndUpdate(filter, update);
+    }
+
+    public Document createMovie(
             String name, ArrayList<String> genre, ArrayList<String>director,
             ArrayList<String> writer, String plot, String releaseYear,
             String image, String imdbRating, String userRating,
@@ -69,7 +107,7 @@ public class MongoDB {
         return newMovie;
     }
 
-    public Document addTVShow(
+    public Document createTVShow(
             String name, ArrayList<String> genre, ArrayList<String>director,
             ArrayList<String> writer, String plot, String releaseYear,
             String image, String season, String seasonWatched,
@@ -92,22 +130,4 @@ public class MongoDB {
                     .append("imdbID", imdbID);
             return newTVShow;
     }
-
-
-
-//    public static void main(String[] args) {
-//        try {
-//            MongoClient mongoClient = MongoClients.create();
-//            MongoDatabase database = mongoClient.getDatabase("MyMediaManager");
-//            System.out.println("Connected successfully");
-//            MongoCollection<Document> collection = database.getCollection("movies");
-//            FindIterable<Document> movies = collection.find();
-//            for (Document movie : movies) {
-//                System.out.println(movie.toJson());
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 }

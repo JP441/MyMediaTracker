@@ -10,6 +10,12 @@ import java.util.Scanner;
 
 public class MainTest {
     public static void main(String[] args) {
+        IGDBHandler igdb = new IGDBHandler();
+        JSONArray array = igdb.searchGameByName("Hades");
+        for(int i = 0; i < array.length(); i++){
+            JSONObject json = array.getJSONObject(i);
+            System.out.println(json.getString("name"));
+        }
 //        MongoDB mongoDB = MongoDB.getMongoDB();
 //        OMDbHandler omdb = new OMDbHandler();
 //

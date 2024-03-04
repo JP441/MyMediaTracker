@@ -8,6 +8,9 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.json.JSONObject;
+
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class MongoDB {
@@ -30,12 +33,9 @@ public class MongoDB {
         return mongoDB;
     }
 
-    public MongoCollection<Document> getMovieCollection(){
-        return mongoDatabase.getCollection("movies");
-    }
-    public MongoCollection<Document> getTVShowCollection(){return mongoDatabase.getCollection("tvshows");}
     public MongoCollection<Document> getUserCollection() {return mongoDatabase.getCollection("users");}
 
+    public MongoCollection<Document> getIGDBAuthCollention(){return mongoDatabase.getCollection("IGDBAuth");}
 
     public void setDatabase(String dataBase){
         mongoDatabase = mongoClient.getDatabase(dataBase);
@@ -129,5 +129,35 @@ public class MongoDB {
                     .append("status", status)
                     .append("imdbID", imdbID);
             return newTVShow;
+    }
+
+
+//    public Document createGame(
+//            String name, ArrayList<>
+//    ){
+//        Document newGame = new Document("name", )
+//                .append()
+//    }
+
+    public Document createIGDBAuthToken(String accessToken, long tokenExpiry){
+        Document auth = new Document("accessToken", accessToken)
+                .append("expiresAt", tokenExpiry);
+        return auth;
+    }
+
+    //This checks that an IGDB auth Token Document exists in the database. If the Document does not exist create one
+    public Document getIGDBAuthToken(){
+        if(getIGDBAuthCollention().find().first() == null) {
+            IGDBHandler igdb = new IGDBHandler();
+            long currentTime = Instant.now().getEpochSecond();
+            JSONObject json = igdb.getToken();
+            String accessToken = json.getString("access_token");
+            long expiresAt = json.getLong("expires_in") + currentTime;
+            Document auth =  createIGDBAuthToken(accessToken, expiresAt);
+            getIGDBAuthCollention().insertOne(auth);
+            return auth;
+        }
+        Document auth = getIGDBAuthCollention().find().first();
+        return auth;
     }
 }

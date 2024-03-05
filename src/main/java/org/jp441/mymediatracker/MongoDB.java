@@ -8,9 +8,10 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MongoDB {
@@ -80,7 +81,7 @@ public class MongoDB {
     }
 
 
-    public void appendDocument(String userName, Document newDocument, String docType){
+    public void appendDocumentToUser(String userName, Document newDocument, String docType){
         Bson filter = Filters.eq("userName", userName);
         Bson update = Updates.push(docType, newDocument);
         Document result = getUserCollection().findOneAndUpdate(filter, update);
@@ -131,13 +132,35 @@ public class MongoDB {
             return newTVShow;
     }
 
+    public Document createGame(
+            JSONObject game, double userRating, String status, LocalDate dateConsumed
+    ){
+        Document newGameDoc = new Document("id", game.getInt("id"))
+                .append("name", game.getString("name"))
+                .append("genres", getIGDBNames(game, "genres"))
+                .append("cover", game.getJSONObject("cover").getString("url"))
+                .append("platforms", getIGDBNames(game, "platforms"))
+                .append("firstReleaseDate", LocalDate.ofEpochDay(game.getLong("first_release_date")))
+                .append("igdbRating", game.getDouble("rating"))
+                .append("summary", game.getString("summary"))
+                .append("userRating", userRating)
+                .append("status", status)
+                .append("dateConsumed", dateConsumed);
+        return newGameDoc;
 
-//    public Document createGame(
-//            String name, ArrayList<>
-//    ){
-//        Document newGame = new Document("name", )
-//                .append()
-//    }
+    }
+
+    //The game data contains IDs for various things that the application has no use for. Such as
+    //genre ID and Platform ID. This function will just extract the name from that data.
+    public ArrayList<String> getIGDBNames(JSONObject game, String key){
+        JSONArray jsonArray = game.getJSONArray(key);
+        ArrayList<String> extractedNames = new ArrayList<>();
+        for(int i=0; i < jsonArray.length(); i++){
+            extractedNames.add(jsonArray.getJSONObject(i).getString("name"));
+        }
+        return extractedNames;
+    }
+
 
     public Document createIGDBAuthToken(String accessToken, long tokenExpiry){
         Document auth = new Document("accessToken", accessToken)

@@ -5,10 +5,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Instant;
-
 import org.bson.Document;
 import org.json.JSONObject;
 import org.json.JSONArray;
+
 public class IGDBHandler {
     private HttpClient client = HttpClient.newHttpClient();
     private HttpRequest request;
@@ -81,7 +81,7 @@ public class IGDBHandler {
     }
 
     public JSONObject getSpecificGame(int id, JSONArray jsonArray){
-        for(int i=0; i < jsonArray.length(); i++ ){
+        for(int i=0; i < jsonArray.length(); i++){
             if(jsonArray.getJSONObject(i).getInt("id") == id){
                 return jsonArray.getJSONObject(i);
             }

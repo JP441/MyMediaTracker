@@ -37,7 +37,7 @@ public class MainTest {
 //                imdbRating, "10", "Completed",
 //                "2007-12", imdbID
 //                );
-//        mongoDB.appendDocument("lucas21", movie, "movies");
+//        mongoDB.appendDocumentToUser("lucas21", movie, "movies");
 //        System.out.println(mongoDB.getUserCollection().find());
 //        mongoDB.addUser("lucas21");
 //        for(Document user: users){

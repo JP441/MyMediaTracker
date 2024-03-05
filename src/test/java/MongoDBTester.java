@@ -1,11 +1,13 @@
 import org.bson.Document;
+import org.jp441.mymediatracker.IGDBHandler;
 import org.jp441.mymediatracker.MongoDB;
+
+import java.time.LocalDate;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.After;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.junit.*;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -14,10 +16,15 @@ import static org.junit.Assert.*;
 public class MongoDBTester {
 
     private static MongoDB mongoDB;
+    private static JSONArray gameSearchArray;
+    private static JSONObject game;
     @BeforeClass
     public static void setUpDatabaseConnection() {
         mongoDB = MongoDB.getMongoDB();
         mongoDB.setDatabase("MyMediaManagerTester");
+        IGDBHandler igdb = new IGDBHandler();
+        gameSearchArray = igdb.searchGameByName("Hades");
+        game = igdb.getSpecificGame(113112, gameSearchArray);
     }
 
     @Before
@@ -54,7 +61,7 @@ public class MongoDBTester {
 
     @Test
     public void movieAddedToUser(){
-        mongoDB.appendDocument("dummyUser", createDummyMovie(), "movies");
+        mongoDB.appendDocumentToUser("dummyUser", createDummyMovie(), "movies");
         Document user = mongoDB.findUser("dummyUser");
         List<Document> movies = user.getList("movies", Document.class);
         for(Document d: movies){
@@ -64,13 +71,29 @@ public class MongoDBTester {
 
     @Test
     public void tvShowAddedToUser(){
-        mongoDB.appendDocument("dummyUser", createDummyTVShow(), "tvShows");
+        mongoDB.appendDocumentToUser("dummyUser", createDummyTVShow(), "tvShows");
         Document user = mongoDB.findUser("dummyUser");
         List<Document> tvshows = user.getList("tvShows", Document.class);
         for(Document d: tvshows){
             assertEquals("Dummy TV Show", d.get("name"));
         }
     }
+
+    @Test
+    public void gameDocCreatedWithCorrectID(){
+        Document gameDoc =  mongoDB.createGame(game, 9.5, "Complete", LocalDate.now());
+        int id = gameDoc.getInteger("id");
+        Assert.assertEquals(113112, id);
+    }
+
+
+//    @Test
+//    public void GameAddedToUser(){
+//        mongoDB.appendDocumentToUser("dummyUser", createDummyGame(), "games");
+//        Document user = mongoDB.findUser("dummyUser");
+//        List<Document> games = user.getList("games", Document.class);
+//        assertEquals("DummyGame", games.getFirst());
+//    }
 
     @Test
     public void iGDBAuthCollectionIsNull(){

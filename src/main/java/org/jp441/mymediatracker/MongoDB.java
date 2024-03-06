@@ -13,6 +13,8 @@ import org.json.JSONObject;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.OptionalDouble;
 
 public class MongoDB {
 

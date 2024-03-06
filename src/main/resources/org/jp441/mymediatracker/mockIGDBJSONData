@@ -1,0 +1,382 @@
+[
+  {
+    "id": 80529,
+    "cover": {
+      "id": 222627,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co4rs3.jpg"
+    },
+    "first_release_date": 799286400,
+    "genres": [
+      {
+        "id": 5,
+        "name": "Shooter"
+      }
+    ],
+    "name": "Hades",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      }
+    ],
+    "summary": "A South Korean-made first person shooter (potentially the first ever from that country)."
+  },
+  {
+    "id": 113112,
+    "cover": {
+      "id": 152760,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co39vc.jpg"
+    },
+    "first_release_date": 1544140800,
+    "genres": [
+      {
+        "id": 12,
+        "name": "Role-playing (RPG)"
+      },
+      {
+        "id": 25,
+        "name": "Hack and slash/Beat \u0027em up"
+      },
+      {
+        "id": 31,
+        "name": "Adventure"
+      },
+      {
+        "id": 32,
+        "name": "Indie"
+      }
+    ],
+    "name": "Hades",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      },
+      {
+        "id": 14,
+        "name": "Mac"
+      },
+      {
+        "id": 48,
+        "name": "PlayStation 4",
+        "platform_logo": {
+          "id": 231,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/pl6f.jpg"
+        }
+      },
+      {
+        "id": 49,
+        "name": "Xbox One",
+        "platform_logo": {
+          "id": 329,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/pl95.jpg"
+        }
+      },
+      {
+        "id": 130,
+        "name": "Nintendo Switch",
+        "platform_logo": {
+          "id": 534,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/pleu.jpg"
+        }
+      },
+      {
+        "id": 167,
+        "name": "PlayStation 5"
+      },
+      {
+        "id": 169,
+        "name": "Xbox Series X|S",
+        "platform_logo": {
+          "id": 561,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/plfl.jpg"
+        }
+      }
+    ],
+    "rating": 91.63346832817905,
+    "summary": "A rogue-lite hack and slash dungeon crawler in which Zagreus, son of Hades the Greek god of the dead, attempts to escape his home and his oppressive father by fighting the souls of the dead through the various layers of the ever-shifting underworld, while getting to know and forging relationships with its inhabitants."
+  },
+  {
+    "id": 134619,
+    "cover": {
+      "id": 105705,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co29k9.jpg"
+    },
+    "first_release_date": 1009756800,
+    "genres": [
+      {
+        "id": 5,
+        "name": "Shooter"
+      }
+    ],
+    "name": "Hades 2",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      }
+    ],
+    "summary": "Hades 2 is a first-person shooter developed by Espaço Informática, a Brazilian company. Espaço Informática placed Hades 2 in the public domain and offered a Freeware download of the game on 20 September 2009 to celebrate the project\u0027s 10th anniversary. On the game\u0027s opening screen, users can select to play the game in English or Portuguese. The distribution package includes a Portuguese-language manual in Firefox Document format.\n\nHades 2 was Espaço Informática\u0027s biggest hit, selling over 50,000 copies in Brazil with additional distribution in Europe."
+  },
+  {
+    "id": 228525,
+    "cover": {
+      "id": 273817,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co5va1.jpg"
+    },
+    "first_release_date": 1719705600,
+    "genres": [
+      {
+        "id": 12,
+        "name": "Role-playing (RPG)"
+      },
+      {
+        "id": 31,
+        "name": "Adventure"
+      },
+      {
+        "id": 32,
+        "name": "Indie"
+      }
+    ],
+    "name": "Hades II",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      }
+    ],
+    "summary": "Battle beyond the Underworld using dark sorcery to take on the Titan of Time in this bewitching sequel to the award-winning rogue-like dungeon crawler."
+  },
+  {
+    "id": 30655,
+    "first_release_date": 1480636800,
+    "genres": [
+      {
+        "id": 9,
+        "name": "Puzzle"
+      },
+      {
+        "id": 15,
+        "name": "Strategy"
+      },
+      {
+        "id": 32,
+        "name": "Indie"
+      }
+    ],
+    "name": "Hade",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      }
+    ],
+    "rating": 70.0,
+    "summary": "Hade is a minimalist logic game with severely difficult puzzles softened by relaxing ambient music."
+  },
+  {
+    "id": 172092,
+    "genres": [
+      {
+        "id": 15,
+        "name": "Strategy"
+      },
+      {
+        "id": 32,
+        "name": "Indie"
+      }
+    ],
+    "name": "Hade: Forbidden Levels",
+    "summary": "DLC with absolutely disturbing and overcomplicated puzzles with hidden details and illogical behavior."
+  },
+  {
+    "id": 56959,
+    "cover": {
+      "id": 131859,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co2tqr.jpg"
+    },
+    "first_release_date": 1551225600,
+    "genres": [
+      {
+        "id": 13,
+        "name": "Simulator"
+      },
+      {
+        "id": 15,
+        "name": "Strategy"
+      }
+    ],
+    "name": "Hades\u0027 Star",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      },
+      {
+        "id": 14,
+        "name": "Mac"
+      },
+      {
+        "id": 34,
+        "name": "Android",
+        "platform_logo": {
+          "id": 831,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/pln3.jpg"
+        }
+      },
+      {
+        "id": 39,
+        "name": "iOS",
+        "platform_logo": {
+          "id": 248,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/pl6w.jpg"
+        }
+      }
+    ],
+    "summary": "Hades\u0027 Star is a 4x MMO, allowing thousands of players in the same universe. In the game, you will create your Empire from scratch over time, and cooperate or battle against other players in shared Star Systems."
+  },
+  {
+    "id": 13867,
+    "cover": {
+      "id": 25473,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/lubqfn4bnvxayfr7niit.jpg"
+    },
+    "first_release_date": 567907200,
+    "genres": [
+      {
+        "id": 5,
+        "name": "Shooter"
+      },
+      {
+        "id": 33,
+        "name": "Arcade"
+      }
+    ],
+    "name": "Hades Nebula",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      },
+      {
+        "id": 15,
+        "name": "Commodore C64/128/MAX",
+        "platform_logo": {
+          "id": 300,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/pl8c.jpg"
+        }
+      },
+      {
+        "id": 26,
+        "name": "ZX Spectrum",
+        "platform_logo": {
+          "id": 371,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/plab.jpg"
+        }
+      },
+      {
+        "id": 63,
+        "name": "Atari ST/STE",
+        "platform_logo": {
+          "id": 367,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/pla7.jpg"
+        }
+      }
+    ],
+    "summary": "A South Korean-made first person shooter (potentially the first ever from that country)."
+  },
+  {
+    "id": 96354,
+    "cover": {
+      "id": 65151,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/xi0s4ebdigvsu0b7k4ip.jpg"
+    },
+    "first_release_date": 1523491200,
+    "genres": [
+      {
+        "id": 31,
+        "name": "Adventure"
+      },
+      {
+        "id": 32,
+        "name": "Indie"
+      }
+    ],
+    "name": "The Road to Hades",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      }
+    ],
+    "rating": 50.0,
+    "summary": "TRTH (The road to hades) is a horror adventure game full of Asian myths and art. Guide the girl safely in the world of the dead. Welcome to a new game you have not experienced."
+  },
+  {
+    "id": 158772,
+    "cover": {
+      "id": 169982,
+      "url": "//images.igdb.com/igdb/image/upload/t_thumb/co3n5q.jpg"
+    },
+    "first_release_date": 1611619200,
+    "genres": [
+      {
+        "id": 5,
+        "name": "Shooter"
+      }
+    ],
+    "name": "Cinders of Hades",
+    "platforms": [
+      {
+        "id": 6,
+        "name": "PC (Microsoft Windows)",
+        "platform_logo": {
+          "id": 203,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg"
+        }
+      },
+      {
+        "id": 163,
+        "name": "SteamVR",
+        "platform_logo": {
+          "id": 159,
+          "url": "//images.igdb.com/igdb/image/upload/t_thumb/ipbdzzx7z3rwuzm9big4.jpg"
+        }
+      }
+    ],
+    "summary": "Cinders of Hades is a relaxing, wave shooter arcade-style VR game that all ages will enjoy. It has some classic, arcade influences translated to VR that veteran arcade players will appreciate."
+  }
+]

@@ -21,7 +21,7 @@ public class IGDBHandlerTester {
 
     @Test
     public void returnNullIfNoGameFound(){
-        JSONArray gameArray = igdb.searchGameByName("Nonexistent Game85489484");
+        JSONArray gameArray = igdb.searchGameByName("Hades");
         JSONObject game = igdb.getSpecificGame(99999934, gameArray);
         assertNull(game);
     }

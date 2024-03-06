@@ -2,14 +2,15 @@ import org.bson.Document;
 import org.jp441.mymediatracker.IGDBHandler;
 import org.jp441.mymediatracker.MongoDB;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.*;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 import static org.junit.Assert.*;
 
 
@@ -17,14 +18,18 @@ public class MongoDBTester {
 
     private static MongoDB mongoDB;
     private static JSONArray gameSearchArray;
-    private static JSONObject game;
+    private static IGDBHandler igdb;
+    private static Document gameDoc;
+
     @BeforeClass
     public static void setUpDatabaseConnection() {
         mongoDB = MongoDB.getMongoDB();
         mongoDB.setDatabase("MyMediaManagerTester");
-        IGDBHandler igdb = new IGDBHandler();
-        gameSearchArray = igdb.searchGameByName("Hades");
-        game = igdb.getSpecificGame(113112, gameSearchArray);
+        gameSearchArray = new JSONArray(createMockGame());
+        igdb = new IGDBHandler();
+        JSONObject game = igdb.getSpecificGame(113112, gameSearchArray);
+        LocalDate dateMediaConsumed = LocalDate.parse("2024-01-22");
+        gameDoc =  mongoDB.createGame(game, 9.5, "Complete", dateMediaConsumed);
     }
 
     @Before
@@ -81,11 +86,33 @@ public class MongoDBTester {
 
     @Test
     public void gameDocCreatedWithCorrectID(){
-        Document gameDoc =  mongoDB.createGame(game, 9.5, "Complete", LocalDate.now());
         int id = gameDoc.getInteger("id");
         Assert.assertEquals(113112, id);
     }
 
+    @Test
+    public void gameDocCreatedWithCorrectName() {
+        String gameName = gameDoc.getString("name");
+        Assert.assertEquals("Hades", gameName);
+    }
+
+    @Test
+    public void gameDocCreatedWithCorrectGenres(){
+        String[] expectedGenres = {
+                "Role-playing (RPG)", "Hack and slash/Beat \u0027em up",
+                "Adventure", "Indie"
+        };
+        List<String> gameDocGenres = gameDoc.getList("genres", String.class);
+        for(int i = 0; i < gameDocGenres.size(); i++){
+            assertEquals(expectedGenres[i], gameDocGenres.get(i));
+        }
+    }
+
+    @Test
+    public void gameDocCreatedWithCorrectCover(){
+        String url = gameDoc.getString("cover");
+        assertEquals("//images.igdb.com/igdb/image/upload/t_thumb/co39vc.jpg", url);
+    }
 
 //    @Test
 //    public void GameAddedToUser(){
@@ -152,6 +179,18 @@ public class MongoDBTester {
                 dateConsumed, imdbID
         );
         return tvShowDocument;
+    }
+
+    public static String createMockGame(){
+        try{
+            String mockGame = new Scanner(new File(
+                    "src/main/resources/org/jp441/mymediatracker/mockIGDBJSONData"
+            )).useDelimiter("\\Z").next();
+            return mockGame;
+        }catch(FileNotFoundException e){
+            System.out.println("could not find file");
+            return null;
+        }
     }
 
     @After

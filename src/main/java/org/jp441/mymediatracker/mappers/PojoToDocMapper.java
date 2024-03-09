@@ -1,12 +1,13 @@
 //This class converts Json data into a Document, which is then used to insert data into MongoDB
-package org.jp441.mymediatracker;
+package org.jp441.mymediatracker.mappers;
 import org.bson.Document;
+import org.jp441.mymediatracker.Game;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class JsonToDocMapper {
+public class PojoToDocMapper {
 
     public Document createMovie(
             String name, ArrayList<String> genre, ArrayList<String>director,
@@ -53,20 +54,18 @@ public class JsonToDocMapper {
         return newTVShow;
     }
 
-    public Document createGame(
-            JSONObject game, double userRating, String status, LocalDate dateConsumed
-    ){
-        Document newGameDoc = new Document("id", game.getInt("id"))
-                .append("name", game.getString("name"))
-                .append("genres", getIGDBNames(game, "genres"))
-                .append("cover", game.getJSONObject("cover").getString("url"))
-                .append("platforms", getIGDBNames(game, "platforms"))
-                .append("firstReleaseDate", LocalDate.ofEpochDay(game.getLong("first_release_date")))
-                .append("igdbRating", game.getDouble("rating"))
-                .append("summary", game.getString("summary"))
-                .append("userRating", userRating)
-                .append("status", status)
-                .append("dateConsumed", dateConsumed);
+    public Document createGameDoc(Game game){
+        Document newGameDoc = new Document("id", game.getId())
+                .append("name", game.getName())
+                .append("genres", game.getGenres())
+                .append("cover", game.getCover())
+                .append("platforms", game.getPlatforms())
+                .append("firstReleaseDate", game.getFirstReleaseDate())
+                .append("igdbRating", game.getIgdbRating())
+                .append("summary", game.getSummary())
+                .append("userRating", game.getUserRating())
+                .append("status", game.getStatus())
+                .append("dateConsumed", game.getDateConsumed());
         return newGameDoc;
     }
 

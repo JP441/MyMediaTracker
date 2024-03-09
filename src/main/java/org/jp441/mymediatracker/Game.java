@@ -1,44 +1,36 @@
 package org.jp441.mymediatracker;
-
+import lombok.Builder;
+import lombok.Data;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Game extends Media{
-    private String console;
-    private String developer;
 
-    public Game(){}
+@Data
+@Builder
+public class Game{
 
-    public Game(
-            String name, ArrayList<String> genre,
-            String console, String developer, String rating
-    ){
-        this.name = name;
-        this.type = "Game";
-        this.genre = genre;
-        this.console = console;
-        this.developer = developer;
-        this.userRating = rating;
-    }
+    private int id;
 
-    public String getConsole(){
-        return console;
-    }
+    private String name;
 
-    public String getDeveloper(){
-        return developer;
-    }
+    private ArrayList<String> genres;
 
-    public void setConsole(String console){
-        this.console = console;
-    }
+    private String cover;
 
-    public void setDeveloper(String developer){
-        this.developer = developer;
-    }
+    private ArrayList<String> platforms;
 
-    @Override
-    public String toString(){
-        return super.toString() + "\nConsole: " + console +
-                "\nDeveloper: " + developer;
-    }
+    private long firstReleaseDate;
+
+    private long igdbRating;
+
+    private String summary;
+
+    private double userRating;
+
+    private String status;
+
+    private LocalDate dateConsumed;
+
+
+
 }

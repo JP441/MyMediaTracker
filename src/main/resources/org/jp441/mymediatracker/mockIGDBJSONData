@@ -378,5 +378,31 @@
       }
     ],
     "summary": "Cinders of Hades is a relaxing, wave shooter arcade-style VR game that all ages will enjoy. It has some classic, arcade influences translated to VR that veteran arcade players will appreciate."
-  }
+  },
+    {
+      "id": 256391,
+      "cover": {
+        "id": 335777,
+        "url": "//images.igdb.com/igdb/image/upload/t_thumb/co7735.jpg"
+      },
+      "first_release_date": 1696723200,
+      "name": "Chef Showdown",
+      "rating": 100.0,
+      "summary": "Activity selected co-op cooking rush game apart inside of Discord\u0027s Nitro program."
+    },
+      {
+        "id": 246312,
+        "name": "Ball Blaster",
+        "platforms": [
+          {
+            "id": 377,
+            "name": "Plug \u0026 Play"
+          },
+          {
+            "id": 411,
+            "name": "Handheld Electronic LCD"
+          }
+        ],
+        "summary": "Same as the VT3xx-based Ball Blaster gameplay-wise, though the graphics are unique; featuring a girl using the launcher and a small creature in the bottom-right. It does not seem to be based on either of the Disney Game It! Zuma clones in coding."
+      }
 ]

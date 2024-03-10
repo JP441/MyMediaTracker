@@ -16,12 +16,12 @@ public class MainTest {
                 .build();
         System.out.println(game.getId());
 
-//        IGDBHandler igdb = new IGDBHandler();
-//        JSONArray array = igdb.searchGameByName("Hades");
-//        for(int i = 0; i < array.length(); i++){
-//            JSONObject json = array.getJSONObject(i);
-//            System.out.println(json.getString("name"));
-//        }
+        IGDBHandler igdb = new IGDBHandler();
+        JSONArray array = igdb.searchGameByName("ball blaster");
+        for(int i = 0; i < array.length(); i++){
+            JSONObject json = array.getJSONObject(i);
+            System.out.println(json.getString("name"));
+        }
 //        MongoDB mongoDB = MongoDB.getMongoDB();
 //        OMDbHandler omdb = new OMDbHandler();
 //

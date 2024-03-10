@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class JsonToPojoMapperGameTester {
 
@@ -52,6 +53,29 @@ public class JsonToPojoMapperGameTester {
     }
 
     @Test
+    public void gameObjCreatedWithMissingGenres(){
+    Game game = setUpGameMissingGenresAndPlatformsAttributes();
+    ArrayList<String> emptyGenres = game.getGenres();
+    assertTrue(emptyGenres.isEmpty());
+    }
+
+    @Test
+    public void gameObjCreatedWithCorrectCover(){
+        Game game = setupFullGame();
+        String expectedCover = "//images.igdb.com/igdb/image/upload/t_thumb/co39vc.jpg";
+        String gameCover = game.getCover();
+        assertEquals(expectedCover, gameCover);
+    }
+
+    @Test
+    public void gameObjCreatedWithMissingCover(){
+        Game game = setUpGameMissingCoverAndFirstReleaseDate();
+        String expectedCover = "//images.igdb.com/igdb/image/upload/t_cover_big/nocover.png";
+        String gameCover = game.getCover();
+        assertEquals(expectedCover, gameCover);
+    }
+
+    @Test
     public void gameObjCreatedWithCorrectPlatforms(){
         Game game = setupFullGame();
         String[] expectedPlatforms = {
@@ -65,10 +89,24 @@ public class JsonToPojoMapperGameTester {
     }
 
     @Test
+    public void gameObjCreatedWithMissingPlatforms(){
+        Game game = setUpGameMissingGenresAndPlatformsAttributes();
+        ArrayList<String> emptyPlatforms = game.getPlatforms();
+        assertTrue(emptyPlatforms.isEmpty());
+    }
+
+    @Test
     public void gameObjCreatedWithCorrectFirstReleaseDate(){
         Game game = setupFullGame();
         long firstReleaseDate = game.getFirstReleaseDate();
         assertEquals(1544140800, firstReleaseDate);
+    }
+
+    @Test
+    public void gameObjCreatedWithMissingFirstReleaseDate(){
+        Game game = setUpGameMissingCoverAndFirstReleaseDate();
+        long firstReleaseDate = game.getFirstReleaseDate();
+        assertEquals(-1000000000, firstReleaseDate);
     }
 
     @Test
@@ -110,15 +148,25 @@ public class JsonToPojoMapperGameTester {
     //This game will have all attributes filled, so there should be no errors in creation.
     private Game setupFullGame(){
         JSONObject gameJson =  igdb.getSpecificGame(113112, gameDataArray);
-        Game game = jsonToPojoMapper.createGame(gameJson);
-        return game;
+        return jsonToPojoMapper.createGame(gameJson);
     }
 
-    //This game will not have the rating attribute included,
-    //so we can test how to handle games missing it.
+    //This game will not have the rating attribute included.
     private Game setUpGameMissingRatingAttribute(){
         JSONObject gameJson = igdb.getSpecificGame(80529, gameDataArray);
-        Game game = jsonToPojoMapper.createGame(gameJson);
-        return game;
+        return jsonToPojoMapper.createGame(gameJson);
     }
+
+    //This game will not have genres and platform attributes included.
+    private Game setUpGameMissingGenresAndPlatformsAttributes(){
+        JSONObject gameJson = igdb.getSpecificGame(256391, gameDataArray);
+        return jsonToPojoMapper.createGame(gameJson);
+    }
+
+    //This game will not have cover and FirstReleaseDate attributes included.
+    private Game setUpGameMissingCoverAndFirstReleaseDate(){
+        JSONObject gameJson = igdb.getSpecificGame( 246312, gameDataArray);
+        return jsonToPojoMapper.createGame(gameJson);
+    }
+
 }

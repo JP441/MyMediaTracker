@@ -73,7 +73,7 @@ public class JsonToPojoMapper {
 
     private String checkIGDBSummary(JSONObject jsonObj){
         if(jsonObj.has("summary")){
-            return jsonObj.getString("sumamry");
+            return jsonObj.getString("summary");
         }
         return "No summary";
     }

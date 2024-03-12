@@ -134,6 +134,13 @@ public class JsonToPojoMapperGameTester {
         assertEquals(expectedSummary, gameObjSummary);
     }
 
+    @Test
+    public void gameObjCreatedWithMissingSummary(){
+        Game game = setupGameMissingSummary();
+        String summary = game.getSummary();
+        assertEquals("No summary", summary);
+    }
+
 
     private static String getMockData(String path){
         try{
@@ -167,6 +174,12 @@ public class JsonToPojoMapperGameTester {
     private Game setUpGameMissingCoverAndFirstReleaseDate(){
         JSONObject gameJson = igdb.getSpecificGame( 246312, gameDataArray);
         return jsonToPojoMapper.createGame(gameJson);
+    }
+
+    //This game will not have a summary attribute included.
+    private Game setupGameMissingSummary(){
+    JSONObject gameJson = igdb.getSpecificGame(194662, gameDataArray);
+    return jsonToPojoMapper.createGame(gameJson);
     }
 
 }

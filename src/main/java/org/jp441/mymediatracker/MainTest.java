@@ -17,7 +17,7 @@ public class MainTest {
         System.out.println(game.getId());
 
         IGDBHandler igdb = new IGDBHandler();
-        JSONArray array = igdb.searchGameByName("ball blaster");
+        JSONArray array = igdb.searchGameByName("The Witcher");
         for(int i = 0; i < array.length(); i++){
             JSONObject json = array.getJSONObject(i);
             System.out.println(json.getString("name"));

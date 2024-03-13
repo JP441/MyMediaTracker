@@ -21,14 +21,14 @@ public class JsonToPojoMapperGameTester {
     public static void setUpMockData(){
         jsonToPojoMapper = new JsonToPojoMapper();
         String pathToMockIGDBData = "src/main/resources/org/jp441/mymediatracker/mockIGDBJSONData";
-        gameDataArray = new JSONArray(getMockData(pathToMockIGDBData));
+        gameDataArray = new JSONArray(MockDataUtils.getMockData(pathToMockIGDBData));
         igdb = new IGDBHandler();
     }
 
     @Test
-    public void gameObjCreatedWithCorrectID(){
+    public void gameObjCreatedWithCorrectIGDBID(){
         Game game = setupFullGame();
-        int id = game.getId();
+        int id = game.getIgdbID();
         assertEquals(113112, id);
     }
 
@@ -129,7 +129,7 @@ public class JsonToPojoMapperGameTester {
     public void gameObjCreatedWithCorrectSummary(){
         Game game = setupFullGame();
         String pathToGameSummary = "src/main/resources/org/jp441/mymediatracker/mockGameSummaryData";
-        String expectedSummary = getMockData(pathToGameSummary);
+        String expectedSummary = MockDataUtils.getMockData(pathToGameSummary);
         String gameObjSummary = game.getSummary();
         assertEquals(expectedSummary, gameObjSummary);
     }
@@ -139,17 +139,6 @@ public class JsonToPojoMapperGameTester {
         Game game = setupGameMissingSummary();
         String summary = game.getSummary();
         assertEquals("No summary", summary);
-    }
-
-
-    private static String getMockData(String path){
-        try{
-            String mockGame = new Scanner(new File(path)).useDelimiter("\\Z").next();
-            return mockGame;
-        }catch(FileNotFoundException e){
-            System.out.println("could not find file");
-            return null;
-        }
     }
 
     //This game will have all attributes filled, so there should be no errors in creation.

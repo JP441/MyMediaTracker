@@ -64,8 +64,8 @@ public class OMDbHandler {
                     .build();
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             responseBody = response.body();
-            json = new JSONObject(responseBody);
-            return json;
+            JSONObject jsonObject = new JSONObject(responseBody);
+            return jsonObject;
         } catch(IOException | InterruptedException e){
             e.printStackTrace();
             return null;

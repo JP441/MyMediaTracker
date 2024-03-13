@@ -54,20 +54,20 @@ public class PojoToDocMapper {
         return newTVShow;
     }
 
-    public Document createGameDoc(Game game){
-        Document newGameDoc = new Document("id", game.getId())
-                .append("name", game.getName())
-                .append("genres", game.getGenres())
-                .append("cover", game.getCover())
-                .append("platforms", game.getPlatforms())
-                .append("firstReleaseDate", game.getFirstReleaseDate())
-                .append("igdbRating", game.getIgdbRating())
-                .append("summary", game.getSummary())
-                .append("userRating", game.getUserRating())
-                .append("status", game.getStatus())
-                .append("dateConsumed", game.getDateConsumed());
-        return newGameDoc;
-    }
+//    public Document createGameDoc(Game game){
+//        Document newGameDoc = new Document("id", game.getId())
+//                .append("name", game.getName())
+//                .append("genres", game.getGenres())
+//                .append("cover", game.getCover())
+//                .append("platforms", game.getPlatforms())
+//                .append("firstReleaseDate", game.getFirstReleaseDate())
+//                .append("igdbRating", game.getIgdbRating())
+//                .append("summary", game.getSummary())
+//                .append("userRating", game.getUserRating())
+//                .append("status", game.getStatus())
+//                .append("dateConsumed", game.getDateConsumed());
+//        return newGameDoc;
+//    }
 
     //The game data contains IDs for various things that the application has no use for. Such as
     //genre ID and Platform ID. This function will just extract the name from that data.

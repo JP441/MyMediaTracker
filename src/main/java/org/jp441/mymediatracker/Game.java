@@ -8,8 +8,9 @@ import java.util.ArrayList;
 @Data
 @Builder
 public class Game{
+    private String mongoID;
 
-    private int id;
+    private int igdbID;
 
     private String name;
 

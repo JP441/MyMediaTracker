@@ -10,18 +10,15 @@ import java.util.Scanner;
 
 public class MainTest {
     public static void main(String[] args) {
-        Game game = Game.builder()
-                .id(100)
-                .name("Halo")
-                .build();
-        System.out.println(game.getId());
 
-        IGDBHandler igdb = new IGDBHandler();
-        JSONArray array = igdb.searchGameByName("The Witcher");
-        for(int i = 0; i < array.length(); i++){
-            JSONObject json = array.getJSONObject(i);
-            System.out.println(json.getString("name"));
-        }
+//        IGDBHandler igdb = new IGDBHandler();
+//        JSONArray array = igdb.searchGameByName("The Witcher");
+//        for(int i = 0; i < array.length(); i++){
+//            JSONObject json = array.getJSONObject(i);
+//            System.out.println(json.getString("name"));
+//        }
+
+
 //        MongoDB mongoDB = MongoDB.getMongoDB();
 //        OMDbHandler omdb = new OMDbHandler();
 //
@@ -49,25 +46,26 @@ public class MainTest {
 //        for(Document user: users){
 //            System.out.println(user);
 //        }
-//        OMDbHandler omdb = new OMDbHandler();
+        OMDbHandler omdb = new OMDbHandler();
 //        System.out.println("Please enter what you would like to search for (Movie/Tv show");
 //        Scanner input = new Scanner(System.in);
 //        String type = input.nextLine();
 //        System.out.println("Please enter a Title");
 //        String inputName = input.nextLine();
-//        JSONArray jsonArray = omdb.searchMovieAndTVByName(inputName, type);
-//        JSONObject json;
-//        for (int i = 0; i < jsonArray.length(); i++) {
-//            json = jsonArray.getJSONObject(i);
-//            System.out.println(
-//                    "\ninputName: " + json.getString("Title") +
-//                            "\nyear: " + json.getString("Year") + "\nimdb ID: " + json.getString("imdbID")
-//
-//            );
-//        }
+        JSONArray jsonArray = omdb.searchMovieAndTVByName("Harry Potter", "movie");
+        JSONObject json;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            json = jsonArray.getJSONObject(i);
+            System.out.println(
+                    "\ninputName: " + json.getString("Title") +
+                            "\nyear: " + json.getString("Year") + "\nimdb ID: " + json.getString("imdbID")
+
+            );
+        }
 //        System.out.println("Please enter the ID of a movie you want to search for");
 //        String ID = input.nextLine();
-//        json = omdb.searchByID(ID);
+          JSONObject jsonObject = omdb.searchByID("tt0304141");
+          System.out.println(jsonObject.toString());
 //        String[] genreArray = json.getString("Genre").split(",\\s");
 //        String[] directorArray = json.getString("Director").split(",\\s");
 //        String[] writerArray = json.getString("Writer").split(",\\s");

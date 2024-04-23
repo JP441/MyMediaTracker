@@ -25,5 +25,6 @@ public class Movie{
     private String metascore;
     private String imdbID;
     private String userRating;
+    private String status;
     private LocalDate dateConsumed;
 }

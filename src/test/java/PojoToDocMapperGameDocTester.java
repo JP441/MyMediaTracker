@@ -1,6 +1,6 @@
 //import org.bson.Document;
 //import org.jp441.mymediatracker.IGDBHandler;
-//import org.jp441.mymediatracker.mappers.PojoToDocMapper;
+//import org.jp441.mymediatracker.mappers.MovieToDocMapper;
 //import org.json.JSONArray;
 //import org.json.JSONObject;
 //import org.junit.Assert;
@@ -24,7 +24,7 @@
 //        JSONArray gameDataArray = new JSONArray(getMockData(pathToMockIGDBData));
 //        IGDBHandler igdb = new IGDBHandler();
 //        JSONObject specificGame = igdb.getSpecificGame(113112, gameDataArray);
-//        PojoToDocMapper pojoToDocMapper = new PojoToDocMapper();
+//        MovieToDocMapper pojoToDocMapper = new MovieToDocMapper();
 //        LocalDate dateMediaConsumed = LocalDate.parse("2024-01-22");
 //        gameDoc = pojoToDocMapper.createGame(specificGame, 9.5, "Completed", dateMediaConsumed);
 //    }

@@ -2,6 +2,7 @@ package org.jp441.mymediatracker;
 
 import lombok.Builder;
 import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class Movie{
     private ArrayList<String> actors;
     private String plot;
     private String imdbRating;
-    private String metaScore;
+    private String metascore;
     private String imdbID;
     private String userRating;
     private LocalDate dateConsumed;

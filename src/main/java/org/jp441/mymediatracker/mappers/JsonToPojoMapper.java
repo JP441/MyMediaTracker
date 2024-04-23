@@ -4,11 +4,12 @@ import org.jp441.mymediatracker.Game;
 import org.jp441.mymediatracker.Movie;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.time.Instant;
 import java.util.Collections;
 import java.util.Locale;
 
@@ -47,11 +48,11 @@ public class JsonToPojoMapper {
         movie.setRuntime(jsonObject.getString("Runtime"));
         movie.setGenres(stringToArrayList(jsonObject.getString("Genre")));
         movie.setDirectors(stringToArrayList(jsonObject.getString("Director")));
-        movie.setWriters(stringToArrayList("Writer"));
-        movie.setActors(stringToArrayList("Actors"));
+        movie.setWriters(stringToArrayList(jsonObject.getString("Writer")));
+        movie.setActors(stringToArrayList(jsonObject.getString("Actors")));
         movie.setPlot(jsonObject.getString("Plot"));
         movie.setImdbRating(jsonObject.getString("imdbRating"));
-        movie.setMetaScore(jsonObject.getString("Metascore"));
+        movie.setMetascore(jsonObject.getString("Metascore"));
         return movie;
     }
 

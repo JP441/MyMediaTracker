@@ -1,25 +1,24 @@
 import org.jp441.mymediatracker.Game;
 import org.jp441.mymediatracker.IGDBHandler;
-import org.jp441.mymediatracker.mappers.JsonToPojoMapper;
+import org.jp441.mymediatracker.mappers.JsonToGameMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
-import java.util.Scanner;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class JsonToPojoMapperGameTester {
+public class JsonToGameMapperTester {
 
     private static IGDBHandler igdb;
     private static JSONArray gameDataArray;
-    private static JsonToPojoMapper jsonToPojoMapper;
+    private static JsonToGameMapper jsonToPojoMapper;
     @BeforeClass
     public static void setUpMockData(){
-        jsonToPojoMapper = new JsonToPojoMapper();
+        jsonToPojoMapper = new JsonToGameMapper();
         String pathToMockIGDBData = "src/main/resources/org/jp441/mymediatracker/mockIGDBJSONData";
         gameDataArray = new JSONArray(MockDataUtils.getMockData(pathToMockIGDBData));
         igdb = new IGDBHandler();

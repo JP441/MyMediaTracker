@@ -1,5 +1,5 @@
 import org.jp441.mymediatracker.Movie;
-import org.jp441.mymediatracker.mappers.JsonToPojoMapper;
+import org.jp441.mymediatracker.mappers.JsonToMovieMapper;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class JsonToPojoMapperMovieTester {
+public class JsonToMovieMapperTester {
     private static Movie movie;
 
     @BeforeClass
     public static void setUpMockData(){
-        JsonToPojoMapper jsonToPojoMapper = new JsonToPojoMapper();
+        JsonToMovieMapper jsonToMovieMapper = new JsonToMovieMapper();
         String path = "src/main/resources/org/jp441/mymediatracker/mockOMDBJSONData";
         JSONObject jsonObject = new JSONObject(MockDataUtils.getMockData(path));
-        movie = jsonToPojoMapper.createFullMovie(jsonObject);
+        movie = jsonToMovieMapper.createFullMovie(jsonObject);
     }
 
     @Test

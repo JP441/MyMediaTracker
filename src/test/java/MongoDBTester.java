@@ -1,8 +1,15 @@
 import org.bson.Document;
 import org.jp441.mymediatracker.IGDBHandler;
 import org.jp441.mymediatracker.MongoDB;
+import org.jp441.mymediatracker.User;
 import org.json.JSONArray;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 
@@ -20,8 +27,8 @@ public class MongoDBTester {
     }
 
     @Before
-    public void setUp(){
-        mongoDB.addUser("dummyUser");
+    public void setup(){
+        createManyUsersHelper();
     }
 
     //Result should return true
@@ -38,48 +45,52 @@ public class MongoDBTester {
     }
 
     @Test
-    public void AddUserToDatabase(){
+    public void getAllUsersFromDatabase(){
+        String[] expectedUsers = {"Jack441", "Hunterx245", "Champion225"};
+        ArrayList<User> users = mongoDB.getAllUsers();
+        for(int i = 0; i < users.size(); i++){
+            assertEquals(expectedUsers[i], users.get(i).getUsername());
+        }
+    }
+
+    @Test
+    public void addUserToDatabase(){
     mongoDB.addUser("Tony241");
-    Document user = mongoDB.findUser("Tony241");
-    assertEquals("Tony241", user.get("userName"));
+    User user = mongoDB.getUserByName("Tony241");
+    assertEquals("Tony241", user.getUsername());
     }
 
     @Test
     public void nullReturnedIfUserNotFound(){
-        Document user = mongoDB.findUser("noUser");
+        User user = mongoDB.getUserByName("noUser");
         assertNull(user);
     }
 
-
-//    @Test
-//    public void movieAddedToUser(){
-//        mongoDB.appendDocumentToUser("dummyUser", createDummyMovie(), "movies");
-//        Document user = mongoDB.findUser("dummyUser");
-//        List<Document> movies = user.getList("movies", Document.class);
-//        for(Document d: movies){
-//            assertEquals("Dummy Movie", d.get("name"));
-//        }
-//    }
-
-//    @Test
-//    public void tvShowAddedToUser(){
-//        mongoDB.appendDocumentToUser("dummyUser", createDummyTVShow(), "tvShows");
-//        Document user = mongoDB.findUser("dummyUser");
-//        List<Document> tvshows = user.getList("tvShows", Document.class);
-//        for(Document d: tvshows){
-//            assertEquals("Dummy TV Show", d.get("name"));
-//        }
-//    }
-
     @Test
-    public void iGDBAuthCollectionIsNull(){
-        mongoDB.getIGDBAuthCollention().drop();
-        mongoDB.getIGDBAuthToken();
-        assertNotNull(mongoDB.getIGDBAuthCollention().find().first());
+    public void removeUserFromDatabase(){
+        mongoDB.removeUser("Hunterx245");
+        ArrayList<User> users = mongoDB.getAllUsers();
+        for(User user: users){
+            assertNotEquals("Hunterx245", user.getUsername());
+        }
     }
+
+
+//    @Test
+//    public void iGDBAuthCollectionIsNull(){
+//        mongoDB.getIGDBAuthCollention().drop();
+//        mongoDB.getIGDBAuthToken();
+//        assertNotNull(mongoDB.getIGDBAuthCollention().find().first());
+//    }
 
     @After
     public void tearDown(){
         mongoDB.getUserCollection().drop();
+    }
+
+    private void createManyUsersHelper(){
+        mongoDB.addUser("Jack441");
+        mongoDB.addUser("Hunterx245");
+        mongoDB.addUser("Champion225");
     }
 }

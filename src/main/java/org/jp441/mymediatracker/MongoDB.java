@@ -1,24 +1,24 @@
 package org.jp441.mymediatracker;
-import com.mongodb.client.MongoIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
+
+import com.mongodb.client.*;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.json.JSONArray;
+import org.jp441.mymediatracker.mappers.DocToUserMapper;
 import org.json.JSONObject;
+
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class MongoDB {
+import static com.mongodb.client.model.Filters.eq;
+
+public class MongoDB implements UserRepository {
 
     private static MongoDB mongoDB;
     private MongoClient mongoClient;
     private MongoDatabase mongoDatabase;
+    private DocToUserMapper docToUserMapper = new DocToUserMapper();
+
     private MongoDB(){
         mongoClient = MongoClients.create();
         mongoDatabase = mongoClient.getDatabase("MyMediaManager");
@@ -34,31 +34,44 @@ public class MongoDB {
         return mongoDB;
     }
 
-    public MongoCollection<Document> getUserCollection() {return mongoDatabase.getCollection("users");}
-
-    public MongoCollection<Document> getIGDBAuthCollention(){return mongoDatabase.getCollection("IGDBAuth");}
-
     public void setDatabase(String dataBase){
         mongoDatabase = mongoClient.getDatabase(dataBase);
     }
-    public boolean checkIfUserNameIsTaken(String userName){
-        userName = userName.strip();
-        Document userToFind = new Document("userName", userName);
-        MongoIterable<Document> iterDoc = getUserCollection().find(userToFind);
-            if(iterDoc.iterator().hasNext()){
-                return true;
-            }
-        return false;
+
+    public MongoCollection<Document> getUserCollection() {return mongoDatabase.getCollection("users");}
+
+    @Override
+    public ArrayList<User> getAllUsers(){
+        FindIterable<Document> userDocs = getUserCollection().find();
+        ArrayList<User> users = new ArrayList<>();
+        for(Document doc: userDocs){
+            users.add(docToUserMapper.createUserObj(doc));
+        }
+        return users;
     }
 
-    public void addUser(String userName){
-        userName = userName.strip();
+    @Override
+    public User getUserByName(String username){
+        username = username.strip();
+        Bson query = eq("username", username);
+        MongoIterable<Document> iterDoc = getUserCollection().find(query);
+        if(iterDoc.iterator().hasNext()){
+            for(Document u: iterDoc){
+                return docToUserMapper.createUserObj(u);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void addUser(String username){
+        username = username.strip();
         ArrayList<Document> movies = new ArrayList<>();
         ArrayList<Document> tvShows = new ArrayList<>();
         ArrayList<Document> games = new ArrayList<>();
         ArrayList<Document> books = new ArrayList<>();
         ArrayList<Document> comics = new ArrayList<>();
-        Document newUser = new Document("userName", userName)
+        Document newUser = new Document("username", username)
                 .append("itemsAdded", 0)
                 .append("movies", movies)
                 .append("tvShows", tvShows)
@@ -68,19 +81,32 @@ public class MongoDB {
         getUserCollection().insertOne(newUser);
     }
 
-    public Document findUser(String userName){
-        userName = userName.strip();
-        Document user = new Document("userName", userName);
-        MongoIterable<Document> iterDoc = getUserCollection().find(user);
-        if(iterDoc.iterator().hasNext()){
-            for(Document u: iterDoc){
-                return u;
-            }
-        }
-        return null;
+    @Override
+    public void removeUser(String username){
+        Bson query = eq("username", username);
+        getUserCollection().deleteOne(query);
     }
+
+    public MongoCollection<Document> getIGDBAuthCollention(){return mongoDatabase.getCollection("IGDBAuth");}
+
+
+
+    public boolean checkIfUserNameIsTaken(String username){
+        username = username.strip();
+        Bson query = eq("username", username);
+        MongoIterable<Document> iterDoc = getUserCollection().find(query);
+            if(iterDoc.iterator().hasNext()){
+                return true;
+            }
+        return false;
+    }
+
+
+
+
+
     public void appendDocumentToUser(String userName, Document newDocument, String docType){
-        Bson filter = Filters.eq("userName", userName);
+        Bson filter = eq("userName", userName);
         Bson update = Updates.push(docType, newDocument);
         Document result = getUserCollection().findOneAndUpdate(filter, update);
     }

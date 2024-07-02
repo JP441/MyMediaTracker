@@ -69,7 +69,7 @@ public class JsonToGameMapperTester {
     @Test
     public void gameObjCreatedWithMissingCover(){
         Game game = setUpGameMissingCoverAndFirstReleaseDate();
-        String expectedCover = "//images.igdb.com/igdb/image/upload/t_cover_big/nocover.png";
+        String expectedCover = "//images.igdb.com/igdb/image/upload/t_thumb/nocover.png";
         String gameCover = game.getCover();
         assertEquals(expectedCover, gameCover);
     }

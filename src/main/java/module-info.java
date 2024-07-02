@@ -13,4 +13,8 @@ module org.jp441.mymediatracker {
     exports org.jp441.mymediatracker;
     exports org.jp441.mymediatracker.mappers;
     opens org.jp441.mymediatracker.mappers to javafx.fxml;
+    exports org.jp441.mymediatracker.view;
+    opens org.jp441.mymediatracker.view to javafx.fxml;
+    exports org.jp441.mymediatracker.model;
+    opens org.jp441.mymediatracker.model to javafx.fxml;
 }

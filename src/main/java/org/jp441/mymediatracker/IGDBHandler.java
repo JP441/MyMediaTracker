@@ -1,13 +1,15 @@
 package org.jp441.mymediatracker;
+
+import org.bson.Document;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Instant;
-import org.bson.Document;
-import org.json.JSONObject;
-import org.json.JSONArray;
 
 public class IGDBHandler {
     private HttpClient client = HttpClient.newHttpClient();
@@ -63,10 +65,12 @@ public class IGDBHandler {
     public JSONArray searchGameByName(String name) {
         String fields = "fields name, genres.name, cover.url, first_release_date, " +
                 "platforms.name, platforms.platform_logo.url, rating, summary;";
+        String where = " where category = 0 & parent_game = n & version_parent = n;";
+        String limit = " limit 50;";
         request = HttpRequest.newBuilder().uri(URI.create("https://api.igdb.com/v4/games/"))
                 .header("Client-ID", System.getenv("IGDB_CLIENT_ID"))
                 .header("Authorization", "Bearer " + checkTokenIsValid())
-                .POST(HttpRequest.BodyPublishers.ofString("search " + "\"" + name + "\"; " + fields))
+                .POST(HttpRequest.BodyPublishers.ofString("search " + "\"" + name + "\"; " + fields + where+ limit))
                 .build();
         try {
         response = client.send(request, HttpResponse.BodyHandlers.ofString());

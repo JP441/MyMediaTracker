@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -52,14 +53,16 @@ public class SearchView extends Stage {
     }
 
     public void display() {
+        this.setWidth(1228);
+        this.setHeight(1000);
         this.setScene(scene);
         this.show();
     }
 
     private void createTilePane() {
         tilePane = new TilePane();
-        tilePane.setPrefColumns(4);
-        tilePane.setPrefTileWidth(210);
+        tilePane.setPrefColumns(5);
+        tilePane.setPrefTileWidth(240);
         tilePane.setPrefTileHeight(410);
     }
 
@@ -73,8 +76,10 @@ public class SearchView extends Stage {
         for(GameCover gameCover: gameCovers) {
             Image image = new Image(gameCover.getCoverURL());
             ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(200);
+            imageView.setFitWidth(230);
             imageView.setFitHeight(400);
+            Tooltip toolTipTxt = new Tooltip(gameCover.getName());
+            Tooltip.install(imageView, toolTipTxt);
             tilePane.getChildren().add(imageView);
         }
     }

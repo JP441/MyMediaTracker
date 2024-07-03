@@ -34,6 +34,7 @@ public class JsonToGameMapper {
                 .build();
         return gameCover;
     }
+    
 
 
     //The game data contains IDs for various things that MyMediaManager has no use for, such as

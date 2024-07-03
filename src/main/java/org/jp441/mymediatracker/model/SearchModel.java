@@ -1,7 +1,7 @@
 package org.jp441.mymediatracker.model;
 
+import org.jp441.mymediatracker.Game;
 import org.jp441.mymediatracker.IGDBHandler;
-import org.jp441.mymediatracker.covers.GameCover;
 import org.jp441.mymediatracker.mappers.JsonToGameMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class SearchModel {
     private IGDBHandler igdbHandler = new IGDBHandler();
     private JsonToGameMapper jsonToGameMapper = new JsonToGameMapper();
-    private ArrayList<GameCover> gameList = new ArrayList<>();
+    private ArrayList<Game> gameList = new ArrayList<>();
 
-    public ArrayList<GameCover> getGameList() {
+    public ArrayList<Game> getGameList() {
         return gameList;
     }
 
@@ -22,21 +22,18 @@ public class SearchModel {
        JSONArray JsonArray = igdbHandler.searchGameByName(name);
        for(int i = 0; i < JsonArray.length(); i++) {
             JSONObject jsonObject = JsonArray.getJSONObject(i);
-            GameCover gameCover = jsonToGameMapper.createGameCover(jsonObject);
-           System.out.println(gameCover.getCoverURL());
-            gameList.add(gameCover);
+            Game game = jsonToGameMapper.createGame(jsonObject);
+            System.out.println(game.getCover());
+            gameList.add(game);
        }
     }
 
     public void coverEnlarger() {
-        for(GameCover gameCover : gameList) {
-            String coverUrl = gameCover.getCoverURL();
+        for(Game game : gameList) {
+            String coverUrl = game.getCover();
             String convertedUrl = coverUrl.replace("t_thumb", "t_cover_big");
             convertedUrl = "https:" + convertedUrl;
-            gameCover.setCoverURL(convertedUrl);
+            game.setCover(convertedUrl);
         }
     }
-
-
-
 }

@@ -1,7 +1,6 @@
 package org.jp441.mymediatracker.mappers;
 
 import org.jp441.mymediatracker.Game;
-import org.jp441.mymediatracker.covers.GameCover;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,17 +24,6 @@ public class JsonToGameMapper {
                 .build();
         return game;
     }
-
-    public GameCover createGameCover(JSONObject jsonGameCover) {
-        GameCover gameCover = GameCover.builder()
-                .id(jsonGameCover.getInt("id"))
-                .name(jsonGameCover.getString("name"))
-                .coverURL(checkIgdbCover(jsonGameCover))
-                .build();
-        return gameCover;
-    }
-    
-
 
     //The game data contains IDs for various things that MyMediaManager has no use for, such as
     //genre ID and Platform ID. This function will just extract the names from that data.

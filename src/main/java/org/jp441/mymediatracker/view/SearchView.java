@@ -12,7 +12,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.jp441.mymediatracker.covers.GameCover;
+import org.jp441.mymediatracker.Game;
 
 import java.util.ArrayList;
 
@@ -71,14 +71,14 @@ public class SearchView extends Stage {
         scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
-    public void createImageView(ArrayList<GameCover> gameCovers) {
+    public void createImageView(ArrayList<Game> games) {
         tilePane.getChildren().clear();
-        for(GameCover gameCover: gameCovers) {
-            Image image = new Image(gameCover.getCoverURL());
+        for(Game game : games) {
+            Image image = new Image(game.getCover());
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(230);
             imageView.setFitHeight(400);
-            Tooltip toolTipTxt = new Tooltip(gameCover.getName());
+            Tooltip toolTipTxt = new Tooltip(game.getName());
             Tooltip.install(imageView, toolTipTxt);
             tilePane.getChildren().add(imageView);
         }

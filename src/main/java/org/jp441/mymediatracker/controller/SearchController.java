@@ -4,26 +4,24 @@ import org.jp441.mymediatracker.model.SearchModel;
 import org.jp441.mymediatracker.view.SearchView;
 
 public class SearchController {
-    SearchView searchView;
-    SearchModel searchModel;
+    private SearchView searchView;
+    private SearchModel searchModel;
 
     public SearchController(SearchView searchView, SearchModel searchModel) {
         this.searchView = searchView;
         this.searchModel = searchModel;
-        setHandlers();
+        setInitHandlers();
     }
 
-    public void setHandlers() {
+    private void setInitHandlers() {
         searchView.getSearchBtn().setOnAction(e -> searchForGames());
     }
 
     private void searchForGames() {
         String searchText = searchView.getSearchTxtField().getText();
-        System.out.println(searchText);
+        searchView.getSearchTxtField().clear();
         searchModel.createGameList(searchText);
         searchModel.coverEnlarger();
-        searchView.createImageView(searchModel.getGameList());
+        searchView.createImageViews(searchModel.getGameList());
     }
-
-
 }

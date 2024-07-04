@@ -11,12 +11,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import org.jp441.mymediatracker.Game;
 
 import java.util.ArrayList;
 
-public class SearchView extends Stage {
+public class SearchView {
+    private SearchWindow searchWindow;
     private VBox root;
     private HBox searchHBox;
     private TilePane tilePane;
@@ -33,11 +33,10 @@ public class SearchView extends Stage {
         return searchTxtField;
     }
 
-    public TilePane getTilePane() {
-        return tilePane;
-    }
+    public Scene getScene() { return scene; }
 
-    public SearchView() {
+    public SearchView(SearchWindow searchWindow) {
+        this.searchWindow = searchWindow;
         root = new VBox();
         searchHBox = new HBox();
         createTilePane();
@@ -47,16 +46,7 @@ public class SearchView extends Stage {
         searchBtn = new Button("Search");
         searchHBox.getChildren().addAll(searchTxtField, searchBtn);
         HBox.setHgrow(searchTxtField, Priority.ALWAYS);
-        scene = new Scene(root, 840,800);
-        this.setTitle("Media Search");
-        this.setScene(scene);
-    }
-
-    public void display() {
-        this.setWidth(1228);
-        this.setHeight(1000);
-        this.setScene(scene);
-        this.show();
+        scene = new Scene(root, 840,800);;
     }
 
     private void createTilePane() {
@@ -71,36 +61,21 @@ public class SearchView extends Stage {
         scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
-    public void createImageView(ArrayList<Game> games) {
+    public void createImageViews(ArrayList<Game> games) {
         tilePane.getChildren().clear();
         for(Game game : games) {
             Image image = new Image(game.getCover());
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(230);
             imageView.setFitHeight(400);
+            imageView.setOnMouseClicked(event -> displaySpecificGameDetails(game));
             Tooltip toolTipTxt = new Tooltip(game.getName());
             Tooltip.install(imageView, toolTipTxt);
             tilePane.getChildren().add(imageView);
         }
     }
 
-//    private ImageView gameImageTest() {
-//        GameCoverFactory gameCoverFactory = new GameCoverFactory();
-//        Cover gameCover = gameCoverFactory.createSearchCover("https://images.igdb.com/igdb/image/upload/t_thumb/co39vc.jpg");
-//        return new ImageView(gameCover.getCover());
-//    }
-
-//            tilePane.getChildren().addAll(
-//            test,
-//                new Rectangle(200, 400, Color.RED),
-//                new Rectangle( 200, 400, Color.GREEN ),
-//                new Rectangle( 200, 400, Color.BLUE ),
-//                new Rectangle( 200, 400, Color.YELLOW ),
-//                new Rectangle( 200, 400, Color.CYAN ),
-//                new Rectangle( 200, 400, Color.PURPLE ),
-//                new Rectangle( 200, 400, Color.BROWN ),
-//                new Rectangle( 200, 400, Color.PINK ),
-//                new Rectangle( 200, 400, Color.ORANGE )
-//        );
-
+    private void displaySpecificGameDetails(Game game) {
+       this.searchWindow.setSceneToGameDetailsView(game);
+    }
 }

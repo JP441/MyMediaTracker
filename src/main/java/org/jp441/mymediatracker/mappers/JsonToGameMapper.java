@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class JsonToGameMapper {
 
     public Game createGame(JSONObject jsonGame){
-        Game game = Game.builder()
+        return Game.builder()
                 .igdbID(jsonGame.getInt("id"))
                 .name(jsonGame.getString("name"))
                 .genres(getSpecificIGDBData(jsonGame, "genres", "name"))
@@ -22,7 +22,6 @@ public class JsonToGameMapper {
                 .igdbRating((Math.round(checkIgdbRating(jsonGame))))
                 .summary(checkIGDBSummary(jsonGame))
                 .build();
-        return game;
     }
 
     //The game data contains IDs for various things that MyMediaManager has no use for, such as
@@ -68,8 +67,7 @@ public class JsonToGameMapper {
         if(jsonObj.has("first_release_date")){
             return jsonObj.getLong("first_release_date");
         }
-        long noReleaseDate = -1000000000;
-        return noReleaseDate;
+        return -1000000000;
     }
 
     private String checkIGDBSummary(JSONObject jsonObj){

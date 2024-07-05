@@ -15,9 +15,9 @@ public class JsonToGameMapper {
         Game game = Game.builder()
                 .igdbID(jsonGame.getInt("id"))
                 .name(jsonGame.getString("name"))
-                .genres(getIGDBNames(jsonGame, "genres"))
+                .genres(getSpecificIGDBData(jsonGame, "genres", "name"))
                 .cover(checkIgdbCover(jsonGame))
-                .platforms(getIGDBNames(jsonGame, "platforms"))
+                .platforms(getSpecificIGDBData(jsonGame, "platforms", "name"))
                 .firstReleaseDate(checkIgdbFirstReleaseDate(jsonGame))
                 .igdbRating((Math.round(checkIgdbRating(jsonGame))))
                 .summary(checkIGDBSummary(jsonGame))
@@ -29,12 +29,12 @@ public class JsonToGameMapper {
     //genre ID and Platform ID. This function will just extract the names from that data.
     //Sometimes the lists containing the names we want to extract are missing in the api data, so
     //we will return an empty ArrayList if this is the case.
-    private ArrayList<String> getIGDBNames(JSONObject game, String key){
+    private ArrayList<String> getSpecificIGDBData(JSONObject game, String key, String dataToExtract){
         if(game.has(key)){
             JSONArray jsonArray = game.getJSONArray(key);
             ArrayList<String> extractedNames = new ArrayList<>();
             for(int i=0; i < jsonArray.length(); i++){
-                extractedNames.add(jsonArray.getJSONObject(i).getString("name"));
+                extractedNames.add(jsonArray.getJSONObject(i).getString(dataToExtract));
             }
             return extractedNames;
         }

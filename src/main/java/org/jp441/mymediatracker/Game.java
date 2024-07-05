@@ -1,6 +1,8 @@
 package org.jp441.mymediatracker;
+
 import lombok.Builder;
 import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -17,6 +19,8 @@ public class Game{
     private ArrayList<String> genres;
 
     private String cover;
+
+    private ArrayList<String> screenshots;
 
     private ArrayList<String> platforms;
 

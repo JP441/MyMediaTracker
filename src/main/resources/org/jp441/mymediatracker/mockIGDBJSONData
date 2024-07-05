@@ -101,6 +101,20 @@
         }
       }
     ],
+    "screenshots": [
+        {
+            "id": 268555,
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc5r7v.jpg"
+        },
+        {
+            "id": 268557,
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc5r7x.jpg"
+        },
+        {
+            "id": 268558,
+            "url": "//images.igdb.com/igdb/image/upload/t_thumb/sc5r7y.jpg"
+        }
+    ],
     "rating": 91.63346832817905,
     "summary": "A rogue-lite hack and slash dungeon crawler in which Zagreus, son of Hades the Greek god of the dead, attempts to escape his home and his oppressive father by fighting the souls of the dead through the various layers of the ever-shifting underworld, while getting to know and forging relationships with its inhabitants."
   },

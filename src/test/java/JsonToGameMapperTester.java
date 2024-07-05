@@ -75,6 +75,26 @@ public class JsonToGameMapperTester {
     }
 
     @Test
+    public void gameObjCreatedWithCorrectScreenshots(){
+        Game game = setupFullGame();
+        String[] expectedScreenshots = {
+                "//images.igdb.com/igdb/image/upload/t_thumb/sc5r7v.jpg",
+                "//images.igdb.com/igdb/image/upload/t_thumb/sc5r7x.jpg",
+                "//images.igdb.com/igdb/image/upload/t_thumb/sc5r7y.jpg"
+        };
+        ArrayList<String> actualScreenshots = game.getScreenshots();
+        for(int i=0; i < expectedScreenshots.length; i++) {
+            assertEquals(expectedScreenshots[i], actualScreenshots.get(i));
+        }
+    }
+
+    @Test
+    public void gameObjCreatedWithMissingScreenshots(){
+        Game game = setupGameMissingScreenshots();
+        assertTrue(game.getScreenshots().isEmpty());
+    }
+
+    @Test
     public void gameObjCreatedWithCorrectPlatforms(){
         Game game = setupFullGame();
         String[] expectedPlatforms = {
@@ -168,6 +188,12 @@ public class JsonToGameMapperTester {
     private Game setupGameMissingSummary(){
     JSONObject gameJson = igdb.getSpecificGame(194662, gameDataArray);
     return jsonToPojoMapper.createGame(gameJson);
+    }
+
+    //This game will not have a screenshot attribute included.
+    private Game setupGameMissingScreenshots(){
+        JSONObject gameJson = igdb.getSpecificGame(96354, gameDataArray);
+        return jsonToPojoMapper.createGame(gameJson);
     }
 
 }

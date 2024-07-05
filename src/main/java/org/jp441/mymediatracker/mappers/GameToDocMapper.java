@@ -9,6 +9,7 @@ public class GameToDocMapper {
                 .append("name", game.getName())
                 .append("genres", game.getGenres())
                 .append("cover", game.getCover())
+                .append("screenshots", game.getScreenshots())
                 .append("platforms", game.getPlatforms())
                 .append("firstReleaseDate", game.getFirstReleaseDate())
                 .append("igdbRating", game.getIgdbRating())

@@ -17,6 +17,7 @@ public class JsonToGameMapper {
                 .name(jsonGame.getString("name"))
                 .genres(getSpecificIGDBData(jsonGame, "genres", "name"))
                 .cover(checkIgdbCover(jsonGame))
+                .screenshots(getSpecificIGDBData(jsonGame, "screenshots", "url"))
                 .platforms(getSpecificIGDBData(jsonGame, "platforms", "name"))
                 .firstReleaseDate(checkIgdbFirstReleaseDate(jsonGame))
                 .igdbRating((Math.round(checkIgdbRating(jsonGame))))

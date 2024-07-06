@@ -1,6 +1,7 @@
 package org.jp441.mymediatracker.view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,9 +25,11 @@ public class GameDetailsView {
         this.game = game;
         VBox root = new VBox();
         root.getChildren().add(createHeaderHBox());
+        root.getChildren().add(createGameTitleHBox());
         root.getChildren().add(backBtn);
-        root.getChildren().add(new Label(game.getName()));
-        return new Scene(root, 1226, 878);
+        Scene scene = new Scene(root, 1226, 878);
+        scene.getStylesheets().add(getClass().getResource("/org/jp441/mymediatracker/css/darkMode.css").toExternalForm());
+        return scene;
     }
 
     private ImageView createGameCover() {
@@ -57,7 +60,19 @@ public class GameDetailsView {
             headerHBox.getChildren().add(imageView);
             return headerHBox;
         }
-        }
+    }
+
+    private HBox createGameTitleHBox() {
+        HBox hbox = new HBox();
+        Label label = new Label(game.getName());
+        label.setId("TitleLabel");
+        hbox.getChildren().add(label);
+        hbox.setAlignment(Pos.CENTER);
+        hbox.setId("GameTitleHBox");
+        return hbox;
+    }
+
+
 
 
     public Button getBackBtn() {

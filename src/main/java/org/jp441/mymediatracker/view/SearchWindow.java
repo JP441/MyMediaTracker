@@ -19,7 +19,8 @@ public class SearchWindow extends Stage {
         createSearchMVC();
         createGameDetailsMVC();
         this.setWidth(1228);
-        this.setHeight(1000);
+        this.setHeight(880);
+        this.setResizable(false);
         this.setScene(searchView.getScene());
         this.show();
     }

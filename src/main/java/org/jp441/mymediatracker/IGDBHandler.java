@@ -64,7 +64,7 @@ public class IGDBHandler {
 
     public JSONArray searchGameByName(String name) {
         String fields = "fields name, genres.name, cover.url, first_release_date, " +
-                "platforms.name, platforms.platform_logo.url, rating, summary;";
+                "platforms.name, platforms.platform_logo.url, rating, summary, screenshots.url;";
         String where = " where category = 0 & parent_game = n & version_parent = n;";
         String limit = " limit 50;";
         request = HttpRequest.newBuilder().uri(URI.create("https://api.igdb.com/v4/games/"))

@@ -1,0 +1,12 @@
+.root {
+    -fx-background-color: #121212;
+}
+
+#GameTitleHBox {
+    -fx-background-color: #404040;
+}
+
+#TitleLabel {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+}

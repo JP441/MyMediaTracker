@@ -28,6 +28,7 @@ public class GameDetailsView {
         root.getChildren().add(createHeaderHBox());
         root.getChildren().add(createGameTitleHBox());
         root.getChildren().add(createGenresHBox());
+        root.getChildren().add(createGameSummary());
         root.getChildren().add(backBtn);
         Scene scene = new Scene(root, 1226, 878);
         scene.getStylesheets().add(getClass().getResource("/org/jp441/mymediatracker/css/darkMode.css").toExternalForm());
@@ -101,8 +102,13 @@ public class GameDetailsView {
         return stackPane;
     }
 
-
-
+    private Label createGameSummary() {
+        Label summary = new Label(game.getSummary());
+        summary.setId("GameSummaryLabel");
+        summary.setWrapText(true);
+        summary.setMaxWidth(1220);
+        return summary;
+    }
 
     public Button getBackBtn() {
         return backBtn;

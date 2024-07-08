@@ -73,9 +73,13 @@ public class JsonToGameMapper {
 
     private String checkIGDBSummary(JSONObject jsonObj){
         if(jsonObj.has("summary")){
-            return jsonObj.getString("summary");
+            return removeParagraphs(jsonObj.getString("summary"));
         }
         return "No summary";
+    }
+
+    private String removeParagraphs(String summary) {
+        return summary.replaceAll("\\n+", " ");
     }
 
     private LocalDate convertEpochToLocalDate(JSONObject jsonObj){

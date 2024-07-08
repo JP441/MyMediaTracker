@@ -10,3 +10,8 @@
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 16px;
 }
+
+#GameSummaryLabel {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+}

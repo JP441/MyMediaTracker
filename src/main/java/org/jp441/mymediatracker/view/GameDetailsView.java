@@ -29,6 +29,7 @@ public class GameDetailsView {
         root.getChildren().add(createGameTitleHBox());
         root.getChildren().add(createGenresHBox());
         root.getChildren().add(createGameSummary());
+        root.getChildren().add(createLeftInfoHBox());
         root.getChildren().add(backBtn);
         Scene scene = new Scene(root, 1226, 878);
         scene.getStylesheets().add(getClass().getResource("/org/jp441/mymediatracker/css/darkMode.css").toExternalForm());
@@ -108,6 +109,26 @@ public class GameDetailsView {
         summary.setWrapText(true);
         summary.setMaxWidth(1220);
         return summary;
+    }
+
+    private HBox createLeftInfoHBox() {
+        HBox hBox = new HBox();
+        hBox.setPadding(new Insets(5,0,0,10));
+        VBox vBox = createLeftInfoVBox();
+        hBox.getChildren().add(vBox);
+        HBox.setHgrow(vBox, Priority.ALWAYS);
+        return hBox;
+    }
+
+    private VBox createLeftInfoVBox() {
+        VBox vBox = new VBox(5);
+        vBox.setPadding(new Insets(5,0,0,5));
+        vBox.setId("LeftInfo");
+        vBox.setPrefHeight(300);
+        vBox.setMaxWidth(300);
+        Label rating = new Label("Rating: " + game.getIgdbRating());
+        vBox.getChildren().addAll(rating);
+        return vBox;
     }
 
     public Button getBackBtn() {

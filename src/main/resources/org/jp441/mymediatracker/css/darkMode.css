@@ -15,3 +15,14 @@
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 16px;
 }
+
+#LeftInfo {
+    -fx-background-color: #404040;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+#LeftInfo .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+}
